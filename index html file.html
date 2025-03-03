@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bấm vào ik</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin-top: 50px;
+        }
+        #question {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        #yes {
+            font-size: 20px;
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+        }
+        #no {
+            font-size: 20px;
+            padding: 10px 20px;
+        }
+        #warning1, #warning2 {
+            display: none;
+            font-size: 24px;
+            color: red;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <p id="question">Bạn là chó phải hông? Nếu là chó hãy chọn yes nhé, nếu ko thì chọn no 💖</p>
+    <button id="yes">Yes</button>
+    <button id="no">No</button>
+    <p id="warning1">Cẩn thận! Bạn đang bấm No quá nhiều! 🤨</p>
+    <p id="warning2">Đã bấm No quá nhiều! mày ko bấm yes tao thả viruss! 😡</p>
+
+    <script>
+        let yesButton = document.getElementById("yes");
+        let noButton = document.getElementById("no");
+        let warning1 = document.getElementById("warning1");
+        let warning2 = document.getElementById("warning2");
+        let size = 20;
+        let noClickCount = 0;
+
+        noButton.addEventListener("click", function() {
+            noClickCount++;
+            if (noClickCount <= 3) {
+                size *= 2;
+                yesButton.style.fontSize = size + "px";
+                yesButton.style.padding = (size / 2) + "px";
+            }
+            if (noClickCount === 3) {
+                warning1.style.display = "block";
+            }
+            if (noClickCount === 5) {
+                warning1.style.display = "none";
+                warning2.style.display = "block";
+            }
+            if (noClickCount === 7) {
+                noButton.style.display = "none";
+            }
+        });
+
+        yesButton.addEventListener("click", function() {
+            document.body.innerHTML = '<img src="https://i.imgflip.com/5fhj6r.jpg" alt="Meme Mèo Cười" style="width: 400px; margin-bottom: 20px;">' +
+                                      '<h1 style="color: red; font-size: 50px; font-weight: bold;">HAHAHA! BẠN là chó hãy chia sẽ cho bạn của bạn để bạn của bạn cũng làm cờ hó :)) 😂</h1>';
+        });
+    </script>
+</body>
+</html>
